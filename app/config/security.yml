@@ -1,0 +1,29 @@
+security:
+  encoders:
+    Ridoux\UserBundle\Entity\User: sha512
+    
+  providers:
+    main:
+        id: fos_user.user_provider.username
+        
+  firewalls:
+    main:
+      pattern:      ^/
+      anonymous:    true
+      provider:     main
+      form_login:
+        login_path: fos_user_security_login
+        check_path: fos_user_security_check
+      logout:
+        path:       fos_user_security_logout
+        target:     /
+      remember_me:
+        secret:     %secret%
+            
+  access_control:
+    #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
+
+fos_user:
+    db_driver:     orm                      
+    firewall_name: main                     
+    user_class:    Ridoux\UserBundle\Entity\User 

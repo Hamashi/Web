@@ -1,0 +1,29 @@
+{% extends "RidouxAdminBundle::layout.html.twig" %}
+
+
+{% block title %}{{ parent() }} - {{structure.nom}} {% endblock %}
+
+{% block body %}
+
+ <div class="row">
+            <div class="col-md-7">
+         
+                    <img src="{{ asset(structure.image.uploadDir ~ '/' ~ structure.image.id ~ '.' ~ structure.image.url) }}" alt="{{ structure.image.alt }}"/>
+                
+            </div>
+            <div class="col-md-5">
+                <h3>{{ structure.nom }}</h3>
+                <h4>{{ structure.commentaire}}</h4>
+                <p> Épaisseur : {{structure.pvc}} <br> Dimensions : {{structure.dimension}}<br />Prix : {% if structure.promotion == 0 %} {{structure.prix}} {%else%} {% set newprice = structure.prix-structure.promotion %} {{newprice}} {%endif%} &euro; </p>
+				{%if structure.promotion != 0%}
+					<h4> Promotion de {{structure.promotion }} &euro;</h4>
+				{%endif%}
+				{% if is_granted('ROLE_USER') %}
+					<a href="{{ path('ridoux_admin_edit', {'id': structure.id}) }}">Modifier l'annonce</a> <br>
+					<a href="{{ path('ridoux_admin_delete', {'id': structure.id}) }}">Supprimer l'annonce</a>
+					
+				{% endif %}
+            </div>
+        </div>
+		<hr>
+{% endblock %}

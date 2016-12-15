@@ -1,0 +1,37 @@
+ridoux_admin_home:
+    path:     /
+    defaults: { _controller: RidouxAdminBundle:Admin:index }
+    
+ridoux_admin_produit:
+    path:     /produit/{id}
+    defaults: { _controller: RidouxAdminBundle:Admin:produit }
+    requirements: 
+        id: \d+
+
+ridoux_admin_add:
+    path:     /admin/ajouter
+    defaults: { _controller: RidouxAdminBundle:Admin:ajouter }
+    
+ridoux_admin_edit:
+    path:     /admin/modifier/{id}
+    defaults: { _controller: RidouxAdminBundle:Admin:modifier }
+    requirements: 
+        id: \d+
+    
+ridoux_admin_delete:
+    path:     /admin/supprimer/{id}
+    defaults: { _controller: RidouxAdminBundle:Admin:supprimer }
+    requirements: 
+        id: \d+
+        
+ridoux_admin_liste:
+    path:     /liste/{type}
+    defaults: { _controller: RidouxAdminBundle:Admin:liste }
+    requirements: 
+        id: \d+
+      
+ridoux_admin_promo:
+    path:     /promotion
+    defaults: { _controller: RidouxAdminBundle:Admin:promotion }
+    requirements: 
+        id: \d+

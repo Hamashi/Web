@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="Maycor" content="">
+	
+    <title>{% block title %}Gonflables-Ridoux{% endblock %}</title>
+
+	
+	
+    {% block stylesheets %}
+		<link href="{{ asset('bundles/ridouxadmin/css/main.css') }}" rel="stylesheet" />
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    {% endblock %}
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+	
+
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{{ path('ridoux_admin_home') }}">Gonflables-Ridoux</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+             		<li>
+                        <a href="{{ path('ridoux_admin_liste', {'type': 'accessoire'}) }}">Acessoires</a>
+                    </li>
+             		<li>
+                        <a href="{{ path('ridoux_admin_liste', {'type': 'minijeu'}) }}">Mini jeux</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('ridoux_admin_liste', {'type': 'chateau'}) }}">Ch&acirc;teaux</a>
+                    </li>
+					<li>
+                        <a href="{{ path('ridoux_admin_liste', {'type': 'parcours'}) }}">Parcours</a>
+                    </li>
+					<li>
+                        <a href="{{ path('ridoux_admin_liste', {'type': 'tobboggan'}) }}">Tobbogans</a>
+                    </li>
+					<li>
+                        <a href="{{ path('ridoux_admin_liste', {'type': 'ventreglisse'}) }}">Ventreglisses</a>
+                    </li>
+					<li>
+                        <a href="{{ path('ridoux_admin_liste', {'type': 'divers'}) }}">Divers</a>
+                    </li>				
+					<li>
+                        <a href="{{ path('ridoux_admin_promo', {'type': 'divers'}) }}">Promotions</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+ <div class="container">
+ 
+		
+		{% block body %}
+		
+		{% endblock %}
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; Gonflables-Ridoux</p> {% if is_granted('ROLE_USER') %} <a href="{{ path('ridoux_admin_add', {'type': 'parcours'}) }}">Ajouter une structure</a> {%endif%}
+                </div>
+            </div>
+            <!-- /.row -->
+        </footer>
+
+    </div>
+    <!-- /.container -->
+ {% block javascripts %}
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>	
+
+  {% endblock %}
+</body>
+
+</html>

@@ -1,0 +1,30 @@
+{% extends "RidouxAdminBundle::layout.html.twig" %}
+
+
+{% block title %}{{ parent() }} - Liste des {{type}} {% endblock %}
+
+
+{% block body %}
+
+  {% for structure in liststructure %}
+     <div class="row">
+            <div class="col-md-7">
+                <a href="{{ path('ridoux_admin_produit', {'id': structure.id}) }}">
+                    <img src="{{ asset(structure.image.uploadDir ~ '/' ~ structure.image.id ~ '.' ~ structure.image.url) }}" alt="{{ structure.image.alt }}"/>
+                </a>
+            </div>
+            <div class="col-md-5">
+                <h3>{{ structure.nom }}</h3>
+                <h4>{{ structure.commentaire}}</h4>
+                <p> Épaisseur : {{structure.pvc}} <br> Dimensions : {{structure.dimension}}<br />Prix : {% if structure.promotion == 0 %} {{structure.prix}} {%else%} {% set newprice = structure.prix-structure.promotion %} {{newprice}} {%endif%} &euro; </p>
+				{%if structure.promotion != 0%}
+					<h4> Promotion de {{structure.promotion }} &euro;</h4>
+				{%endif%}
+				
+
+            </div>
+        </div>
+		<hr>
+  {% endfor %}
+
+{% endblock %}
